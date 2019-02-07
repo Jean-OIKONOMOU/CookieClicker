@@ -64,15 +64,18 @@ var score = 490;
 cookie.addEventListener("click", function() {
   score++;
   scoreDisplay.textContent = score;
+
   console.log(score);
   console.log(scoreDisplay.textContent);
-
+var a = parseInt(scoreDisplay.textContent.value, 10);
   console.log(typeof a);
+  console.log(a);
 })
 
 // JAVASCRIPT FOR THE MULTIPLIER AND AUTOCLICK BUTTONS
 var hasAutoClick = false;
-var a = parseInt(scoreDisplay.textContent.value, 10);
+
+
 // BUTTON FADE OUT
 (a <= 500 && hasAutoClick === false) ? autoClick.style.opacity = "0.5" : autoClick.style.opacity = "1";
 
