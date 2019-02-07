@@ -3,6 +3,7 @@ var cookie = document.getElementById("cookie");
 var scoreDisplay = document.getElementById("affichage");
 var autoClick = document.getElementById("autoclick");
 var price = [500, 5000, 50];
+var hasAutoClick = false;
 
 // SKINS
 var a = document.getElementById("a");
@@ -16,35 +17,35 @@ var h = document.getElementById("h");
 
 // CHANGE COOKIE SKIN ON CLICK
 a.addEventListener("click", function() {
-  cookie.src="1.jpg";
+  cookie.src = "1.jpg";
 });
 
 b.addEventListener("click", function() {
-  cookie.src="2.png";
+  cookie.src = "2.png";
 });
 
 c.addEventListener("click", function() {
-  cookie.src="3.jpg";
+  cookie.src = "3.jpg";
 });
 
 d.addEventListener("click", function() {
-  cookie.src="4.png";
+  cookie.src = "4.png";
 });
 
 e.addEventListener("click", function() {
-  cookie.src="darth.jpg";
+  cookie.src = "darth.jpg";
 });
 
 f.addEventListener("click", function() {
-  cookie.src="freddie.jpg";
+  cookie.src = "freddie.jpg";
 });
 
 g.addEventListener("click", function() {
-  cookie.src="o.png";
+  cookie.src = "o.png";
 });
 
 h.addEventListener("click", function() {
-  cookie.src="chocolate_chip_cookies.jpg";
+  cookie.src = "jojo.png";
 });
 
 // SQUISH EFFECT
@@ -59,29 +60,26 @@ cookie.addEventListener("mouseup", function() {
 })
 
 // SCORE KEEPER
-var score = 490;
+var score = 0;
 
 cookie.addEventListener("click", function() {
   score++;
   scoreDisplay.textContent = score;
+  // BUTTON FADE OUT
+  (score <= 10 && hasAutoClick === false) ? autoClick.style.opacity = "0.5": autoClick.style.opacity = "1";
+  // (cookie.src = "jojo.png") ?
+  /* var a = parseInt(scoreDisplay.textContent, 10);
   console.log(score);
-  console.log(scoreDisplay.textContent);
-
-  console.log(typeof a);
+  console.log(scoreDisplay.textContent); */
 })
 
+//window.onload = function() {};
 // JAVASCRIPT FOR THE MULTIPLIER AND AUTOCLICK BUTTONS
-var hasAutoClick = false;
-var a = parseInt(scoreDisplay.textContent.value, 10);
-// BUTTON FADE OUT
-(a <= 500 && hasAutoClick === false) ? autoClick.style.opacity = "0.5" : autoClick.style.opacity = "1";
 
-console.log(scoreDisplay.textContent.value);
-console.log(score);
 autoClick.addEventListener("click", function() {
 
-  if (score >= price[0] && hasAutoClick === false) {
-    score -= price[0];
+  if (score >= 10 && hasAutoClick === false) {
+    score -= 10;
     setInterval(function() {
       score++;
       scoreDisplay.textContent = score;
@@ -89,7 +87,7 @@ autoClick.addEventListener("click", function() {
     autoClick.disabled = true;
     autoClick.textContent = "Auto Click - Purchased";
     hasAutoClick = true;
-  } else if (score < price[0] && hasAutoClick === false) {
+  } else if (score < 10 && hasAutoClick === false) {
     alert("You don't have enough cookies!");
   }
 })
