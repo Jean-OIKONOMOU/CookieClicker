@@ -104,7 +104,7 @@ cookie.addEventListener("click", function() {
   console.log(scoreDisplay.textContent); */
 });
 
-// BONUS TIMER BAR (Bonus code is missing)
+// BONUS TIMER BAR (Bonus code is missing + add numerical timer)
 
 bonusButton.addEventListener("click", function() {
   var timeleft = 30;
@@ -118,9 +118,10 @@ bonusButton.addEventListener("click", function() {
   }, 1000);
 })
 
-// AUTOCLICK BUTTON (READY)
+// AUTOCLICK BUTTON (must activate for free at 200 cookies then desactivates at 500 where it must be bought)
 
 autoClickButton.addEventListener("click", function() {
+  // if (score <= 500) {autoClickButton.disabled = true;} else if
   if (score >= 10 && hasAutoClick === false) {
     score -= 10;
     setInterval(function() {
@@ -134,5 +135,5 @@ autoClickButton.addEventListener("click", function() {
     alert("You don't have enough cookies!");
   }
 
-  (score >= 10 && hasAutoClick === false) ? autoClickButton.style.opacity = "1": autoClickButton.style.opacity = "0.2";
+  (score >= 500 && hasAutoClick === false) ? autoClickButton.style.opacity = "1": autoClickButton.style.opacity = "0.2";
 })
