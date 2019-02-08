@@ -69,14 +69,15 @@ cookie.addEventListener("mouseup", function() {
 multiplicateur = 1;
 multiplierButton.addEventListener("click", function augmenteMultiplicateur(){
 var multiplierPrice = 50;
+score - multiplierPrice;
   if (score >= multiplierPrice) {
     multiplierPrice *= 2;
     multiplicateur++;
-    multiplierButton.textContent = "Multiplicateur - x" + multiplicateur + "";
-  } else if (score < price[0] && hasAutoClick === false) {
-    alert("You don't have enough cookies!");
+    multiplierButton.textContent = "Multiplicateur: x" + multiplicateur + " Prix: " + multiplierPrice + " Cookies";
+  } else if (score < multiplierPrice) {
+    console.log("You don't have enough cookies!");
   }
-  console.log("ola");
+
 });
 
 // SCORE KEEPER
