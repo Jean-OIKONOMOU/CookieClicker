@@ -1,9 +1,15 @@
 // IMPORTANT VARIABLES FOR THE GAME
 var cookie = document.getElementById("cookie");
 var scoreDisplay = document.getElementById("affichage");
-var autoClick = document.getElementById("autoclick");
+var autoClickButton = document.getElementById("autoclick");
+var multiplierButton = document.getElementById("multiplier");
+var bonusButton = document.getElementById("bonus");
 var price = [500, 5000, 50];
 var hasAutoClick = false;
+var hasBonus = false;
+autoClickButton.style.opacity = "0.5";
+bonusButton.style.opacity = "0.5";
+multiplierButton.style.opacity = "0.5";
 
 // SKINS
 var a = document.getElementById("a");
@@ -66,28 +72,42 @@ cookie.addEventListener("click", function() {
   score++;
   scoreDisplay.textContent = score;
   // BUTTON FADE OUT
-  (score <= 10 && hasAutoClick === false) ? autoClick.style.opacity = "0.5": autoClick.style.opacity = "1";
+  (score < 10 && bonusButton === false) ? autoClickButton.style.opacity = "0.5": autoClickButton.style.opacity = "1";
+  (score < 10 && hasAutoClick === false) ? autoClickButton.style.opacity = "0.5": autoClickButton.style.opacity = "1";
   // (cookie.src = "jojo.png") ?
   /* var a = parseInt(scoreDisplay.textContent, 10);
   console.log(score);
   console.log(scoreDisplay.textContent); */
 })
 
+
+bonusButton.addEventListener("click", function () {
+  var timeleft = 30;
+  var downloadTimer = setInterval(function(){
+  document.getElementById("progressBar").value = 31 - timeleft;
+  timeleft -= 1;
+  if(timeleft <= 0) {
+    clearInterval(downloadTimer);
+    document.getElementById("progressBar").value = 0;
+  }
+}, 1000);
+
+})
+
 //window.onload = function() {};
 // JAVASCRIPT FOR THE MULTIPLIER AND AUTOCLICK BUTTONS
 
-autoClick.addEventListener("click", function() {
-
-  if (score >= 10 && hasAutoClick === false) {
-    score -= 10;
+autoClickButton.addEventListener("click", function() {
+  if (score >= price[0] && hasAutoClick === false) {
+    score -= price[0];
     setInterval(function() {
       score++;
       scoreDisplay.textContent = score;
     }, 1000);
-    autoClick.disabled = true;
-    autoClick.textContent = "Auto Click - Purchased";
+    autoClickButton.disabled = true;
+    autoClickButton.textContent = "Auto Click - Purchased";
     hasAutoClick = true;
-  } else if (score < 10 && hasAutoClick === false) {
+  } else if (score < price[0] && hasAutoClick === false) {
     alert("You don't have enough cookies!");
   }
 })
