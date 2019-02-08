@@ -4,12 +4,12 @@ var scoreDisplay = document.getElementById("affichage");
 var autoClickButton = document.getElementById("autoclick");
 var multiplierButton = document.getElementById("multiplier");
 var bonusButton = document.getElementById("bonus");
-var price = [500, 5000, 50];
+var price = [500, 5000];
 var hasAutoClick = false;
 var hasBonus = false;
-autoClickButton.style.opacity = "0.5";
-bonusButton.style.opacity = "0.5";
-multiplierButton.style.opacity = "0.5";
+autoClickButton.style.opacity = "0.2";
+bonusButton.style.opacity = "0.2";
+multiplierButton.style.opacity = "0.2";
 
 // SKINS
 var a = document.getElementById("a");
@@ -65,15 +65,34 @@ cookie.addEventListener("mouseup", function() {
   cookie.style.height = "300px";
 })
 
+// MULTIPLICATEUR
+multiplicateur = 1;
+multiplierButton.addEventListener("click", function augmenteMultiplicateur(){
+var multiplierPrice = 50;
+  if (score >= multiplierPrice) {
+    multiplierPrice *= 2;
+    multiplicateur++;
+    multiplierButton.textContent = "Multiplicateur - x" + multiplicateur + "";
+  } else if (score < price[0] && hasAutoClick === false) {
+    alert("You don't have enough cookies!");
+  }
+  console.log("ola");
+});
+
 // SCORE KEEPER
 var score = 0;
 
 cookie.addEventListener("click", function() {
-  score++;
+  if (multiplicateur === 1 && multiplicateur != 0) {
+    score = (score+1)*multiplicateur;
+  } else if (multiplicateur>1) {
+    score = score+multiplicateur;
+  }
+
   scoreDisplay.textContent = score;
   // BUTTON FADE OUT
-  (score < 10 && bonusButton === false) ? autoClickButton.style.opacity = "0.5": autoClickButton.style.opacity = "1";
-  (score < 10 && hasAutoClick === false) ? autoClickButton.style.opacity = "0.5": autoClickButton.style.opacity = "1";
+  (score >= 10 && bonusButton === false) ? autoClickButton.style.opacity = "1" : autoClickButton.style.opacity = "0.2";
+  (score >= 10 && hasAutoClick === false) ? autoClickButton.style.opacity = "1" : autoClickButton.style.opacity = "0.2";
   // (cookie.src = "jojo.png") ?
   /* var a = parseInt(scoreDisplay.textContent, 10);
   console.log(score);
