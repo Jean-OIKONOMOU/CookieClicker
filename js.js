@@ -21,7 +21,7 @@ var f = document.getElementById("f");
 var g = document.getElementById("g");
 var h = document.getElementById("h");
 
-// CHANGE COOKIE SKIN ON CLICK
+// CHANGE COOKIE SKIN ON CLICK (must add unlockables if score is higher than X)
 a.addEventListener("click", function() {
   cookie.src = "1.jpg";
 });
@@ -65,7 +65,7 @@ cookie.addEventListener("mouseup", function() {
   cookie.style.height = "300px";
 })
 
-// MULTIPLICATEUR
+// MULTIPLICATEUR (must add a true/false checker for the Bonus)
 var multiplicateur = 1;
 var multiplierPrice = 10;
 multiplierButton.addEventListener("click", function augmenteMultiplicateur() {
@@ -104,6 +104,7 @@ cookie.addEventListener("click", function() {
   console.log(scoreDisplay.textContent); */
 });
 
+// BONUS TIMER BAR (Bonus code is missing)
 
 bonusButton.addEventListener("click", function() {
   var timeleft = 30;
@@ -117,7 +118,7 @@ bonusButton.addEventListener("click", function() {
   }, 1000);
 })
 
-// JAVASCRIPT FOR THE MULTIPLIER AND AUTOCLICK BUTTONS
+// AUTOCLICK BUTTON (READY)
 
 autoClickButton.addEventListener("click", function() {
   if (score >= 10 && hasAutoClick === false) {
