@@ -68,7 +68,7 @@ cookie.addEventListener("mouseup", function() {
 // MULTIPLICATEUR
 var multiplicateur = 1;
 var multiplierPrice = 10;
-multiplierButton.addEventListener("click", function augmenteMultiplicateur(){
+multiplierButton.addEventListener("click", function augmenteMultiplicateur() {
 
   if (score >= multiplierPrice && score > 0) {
     score -= multiplierPrice;
@@ -81,23 +81,22 @@ multiplierButton.addEventListener("click", function augmenteMultiplicateur(){
     console.log("You don't have enough cookies!");
   }
 
-  (score >= multiplierPrice) ? multiplierButton.style.opacity = "1" : multiplierButton.style.opacity = "0.2";
+  (score >= multiplierPrice) ? multiplierButton.style.opacity = "1": multiplierButton.style.opacity = "0.2";
 });
 
 // SCORE KEEPER
 var score = 0;
 cookie.addEventListener("click", function() {
   if (multiplicateur === 1 && multiplicateur != 0) {
-    score = (score+1)*multiplicateur;
-  } else if (multiplicateur>1) {
-    score = score+multiplicateur;
+    score = (score + 1) * multiplicateur;
+  } else if (multiplicateur > 1) {
+    score = score + multiplicateur;
   }
   scoreDisplay.textContent = score;
 
-  (score >= 10 && bonusButton === false) ? autoClickButton.style.opacity = "1" : autoClickButton.style.opacity = "0.2";
-  (score >= 10 && hasAutoClick === false) ? autoClickButton.style.opacity = "1" : autoClickButton.style.opacity = "0.2";
-  (score >= multiplierPrice) ? multiplierButton.style.opacity = "1" : multiplierButton.style.opacity = "0.2";
-
+  (score >= 10 && bonusButton === false) ? autoClickButton.style.opacity = "1": autoClickButton.style.opacity = "0.2";
+  (score >= 10 && hasAutoClick === false) ? autoClickButton.style.opacity = "1": autoClickButton.style.opacity = "0.2";
+  (score >= multiplierPrice) ? multiplierButton.style.opacity = "1": multiplierButton.style.opacity = "0.2";
 
   /* (cookie.src = "jojo.png") ?
    var a = parseInt(scoreDisplay.textContent, 10);
@@ -106,20 +105,18 @@ cookie.addEventListener("click", function() {
 });
 
 
-bonusButton.addEventListener("click", function () {
+bonusButton.addEventListener("click", function() {
   var timeleft = 30;
-  var timer = setInterval(function(){
-  document.getElementById("progressBar").value = 31 - timeleft;
-  timeleft -= 1;
-  if(timeleft <= 0) {
-    clearInterval(timer);
-    document.getElementById("progressBar").value = 0;
-  }
-}, 1000);
-
+  var timer = setInterval(function() {
+    document.getElementById("progressBar").value = 31 - timeleft;
+    timeleft -= 1;
+    if (timeleft <= 0) {
+      clearInterval(timer);
+      document.getElementById("progressBar").value = 0;
+    }
+  }, 1000);
 })
 
-//window.onload = function() {};
 // JAVASCRIPT FOR THE MULTIPLIER AND AUTOCLICK BUTTONS
 
 autoClickButton.addEventListener("click", function() {
@@ -136,5 +133,5 @@ autoClickButton.addEventListener("click", function() {
     alert("You don't have enough cookies!");
   }
 
-(score >= 10 && hasAutoClick === false) ? autoClickButton.style.opacity = "1" : autoClickButton.style.opacity = "0.2";
+  (score >= 10 && hasAutoClick === false) ? autoClickButton.style.opacity = "1": autoClickButton.style.opacity = "0.2";
 })
