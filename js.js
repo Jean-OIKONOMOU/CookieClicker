@@ -94,10 +94,35 @@ cookie.addEventListener("click", function() {
   }
   scoreDisplay.textContent = score;
 
-  (score >= 10 && bonusButton === false) ? autoClickButton.style.opacity = "1": autoClickButton.style.opacity = "0.2";
-  (score >= 10 && hasAutoClick === false) ? autoClickButton.style.opacity = "1": autoClickButton.style.opacity = "0.2";
+  (score >= 5000 && bonusButton === false) ? bonusButton.style.opacity = "1": bonusButton.style.opacity = "0.2";
+  (score >= 500 && hasAutoClick === false) ? autoClickButton.style.opacity = "1": autoClickButton.style.opacity = "0.2";
   (score >= multiplierPrice) ? multiplierButton.style.opacity = "1": multiplierButton.style.opacity = "0.2";
 
+  var freeAutoClick = false;
+
+  if (score === 10) {
+    freeAutoClick=true;
+    console.log("ok");
+  } else if (score === 20) {
+    freeAutoClick=false;
+    console.log("pas ok");
+  };
+
+  console.log(freeAutoClick);
+
+  if (freeAutoClick === true) {
+    setInterval(function() {
+      score++;
+      scoreDisplay.textContent = score;
+    }, 1000);
+  }
+
+  /* while (score >= 200 && score <= 500) {
+    setInterval(function() {
+      score++;
+      scoreDisplay.textContent = score;
+    }, 1000)
+  }
   /* (cookie.src = "jojo.png") ?
    var a = parseInt(scoreDisplay.textContent, 10);
   console.log(score);
@@ -122,8 +147,8 @@ bonusButton.addEventListener("click", function() {
 
 autoClickButton.addEventListener("click", function() {
   // if (score <= 500) {autoClickButton.disabled = true;} else if
-  if (score >= 10 && hasAutoClick === false) {
-    score -= 10;
+  if (score >= 500 && hasAutoClick === false) {
+    score -= 500;
     setInterval(function() {
       score++;
       scoreDisplay.textContent = score;
@@ -131,9 +156,9 @@ autoClickButton.addEventListener("click", function() {
     autoClickButton.disabled = true;
     autoClickButton.textContent = "Auto Click - Purchased";
     hasAutoClick = true;
-  } else if (score < 10 && hasAutoClick === false) {
+  } else if (score < 500 && hasAutoClick === false) {
     alert("You don't have enough cookies!");
   }
 
-  (score >= 500 && hasAutoClick === false) ? autoClickButton.style.opacity = "1": autoClickButton.style.opacity = "0.2";
+//  (score >= 500 && hasAutoClick === false) ? autoClickButton.style.opacity = "1": autoClickButton.style.opacity = "0.2";
 })
