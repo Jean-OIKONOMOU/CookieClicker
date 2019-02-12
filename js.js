@@ -1,15 +1,33 @@
 // IMPORTANT VARIABLES FOR THE GAME
-var cookie = document.getElementById("cookie");
-var scoreDisplay = document.getElementById("affichage");
-var autoClickButton = document.getElementById("autoclick");
-var multiplierButton = document.getElementById("multiplier");
-var bonusButton = document.getElementById("bonus");
-var price = [500, 5000];
-var hasAutoClick = false;
-var hasBonus = false;
-autoClickButton.style.opacity = "0.2";
-bonusButton.style.opacity = "0.2";
-multiplierButton.style.opacity = "0.2";
+var cookie = document.getElementById("cookie"); // COOKIE INCREMENTER.
+var scoreDisplay = document.getElementById("affichage"); // COOKIE SCORE DISPLAY.
+var autoClickButton = document.getElementById("autoclick"); // AUTOCLICK BUTTON.
+var multiplierButton = document.getElementById("multiplier"); // MULTIPLIER BUTTON.
+var bonusButton = document.getElementById("bonus"); // BONUS BUTTON.
+var price = [500, 5000]; // PRICES OF THE BONUS AND AUTOCLICK, USELESS.
+var hasAutoClick = false; // VARIABLE WHICH CONTROLS IF THE AUTOCLICK HAS BEEN BOUGHT OR NOT.
+var hasBonus = false; // VARIABLE WHICH CONTROLS IF THE BONUS HAS BEEN BOUGHT OR NOT.
+var freeAutoClick = false; // VARIABLE WHICH CONTROLS IF THE FREE AUTOCLICK IS ON OR NOT.
+var score = 0; // THE ACTUAL SCORE THAT APPEARS ABOVE THE COOKIE.
+
+var t; // GLOBAL VARIABLE USED IN THE AUTOCLICK FUNCTION.
+
+function increment() { // THE INCREMENT PART OF THE AUTOCLICK FUNCTION.
+  score++;
+  scoreDisplay.textContent = score; // THE HTML ELEMENT WHERE THE SCORE APPEARS.
+}
+
+function autoClick() { // THE TIMED PART OF THE AUTOCLICK FUNCTION. WRITE autoClick() TO CALL THE AUTOCLICK.
+  t = setInterval(increment, 1000);
+}
+
+function stopAutoClick() { // CALL THIS FUNCTION TO STOP THE AUTOCLICK.
+  clearInterval(t);
+}
+
+autoClickButton.style.opacity = "0.2"; // BASE OPACITY OF THE AUTOCLICK BUTTON.
+bonusButton.style.opacity = "0.2"; // BASE OPACITY OF THE BONUS BUTTON.
+multiplierButton.style.opacity = "0.2"; // BASE OPCAITY OF THE MULTIPLIER BUTTON.
 
 // SKINS
 var a = document.getElementById("a");
@@ -85,7 +103,7 @@ multiplierButton.addEventListener("click", function augmenteMultiplicateur() {
 });
 
 // SCORE KEEPER
-var score = 0;
+
 cookie.addEventListener("click", function() {
   if (multiplicateur === 1 && multiplicateur != 0) {
     score = (score + 1) * multiplicateur;
@@ -98,35 +116,21 @@ cookie.addEventListener("click", function() {
   (score >= 500 && hasAutoClick === false) ? autoClickButton.style.opacity = "1": autoClickButton.style.opacity = "0.2";
   (score >= multiplierPrice) ? multiplierButton.style.opacity = "1": multiplierButton.style.opacity = "0.2";
 
-  var freeAutoClick = false;
+  console.log(score);
 
   if (score === 10) {
-    freeAutoClick=true;
-    console.log("ok");
-  } else if (score === 20) {
-    freeAutoClick=false;
-    console.log("pas ok");
-  };
-
-  console.log(freeAutoClick);
-
-  if (freeAutoClick === true) {
-    setInterval(function() {
-      score++;
-      scoreDisplay.textContent = score;
-    }, 1000);
+    freeAutoClick = true;
+    console.log(freeAutoClick);
+  } else if (score === 30 || score != 10) {
+    freeAutoClick = false;
+    console.log(freeAutoClick);
   }
 
-  /* while (score >= 200 && score <= 500) {
-    setInterval(function() {
-      score++;
-      scoreDisplay.textContent = score;
-    }, 1000)
+  if (freeAutoClick == true) {
+    autoClick()
+  } else if (score >= 30 && freeAutoClick == false) {
+    stopAutoClick();
   }
-  /* (cookie.src = "jojo.png") ?
-   var a = parseInt(scoreDisplay.textContent, 10);
-  console.log(score);
-  console.log(scoreDisplay.textContent); */
 });
 
 // BONUS TIMER BAR (Bonus code is missing + add numerical timer)
@@ -160,5 +164,5 @@ autoClickButton.addEventListener("click", function() {
     alert("You don't have enough cookies!");
   }
 
-//  (score >= 500 && hasAutoClick === false) ? autoClickButton.style.opacity = "1": autoClickButton.style.opacity = "0.2";
+  //  (score >= 500 && hasAutoClick === false) ? autoClickButton.style.opacity = "1": autoClickButton.style.opacity = "0.2";
 })
