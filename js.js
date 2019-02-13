@@ -106,29 +106,51 @@ multiplierButton.addEventListener("click", function augmenteMultiplicateur() {
 
 cookie.addEventListener("click", function() {
   if (multiplicateur === 1 && multiplicateur != 0) {
-    score = (score + 1) * multiplicateur;
+    score = (score + 1) * multiplicateur; // DEFAULT CLICK VALUE IF NO MULTIPLIER HAS BEEN BOUGHT.
   } else if (multiplicateur > 1) {
+    score = score + multiplicateur; // CLICK VALUE IF AT LEAST ONE MULTIPLIER HAS BEEN BOUGHT.
+  }
+
+  // IF BONUS IS ACTIVATED IT ADDS ONE MORE CLICK VALUE
+  if (hasBonus === true) {
     score = score + multiplicateur;
   }
   scoreDisplay.textContent = score;
 
+  // BUTTON OPACITY CHECKER
   (score >= 5000 && bonusButton === false) ? bonusButton.style.opacity = "1": bonusButton.style.opacity = "0.2";
   (score >= 500 && hasAutoClick === false) ? autoClickButton.style.opacity = "1": autoClickButton.style.opacity = "0.2";
   (score >= multiplierPrice) ? multiplierButton.style.opacity = "1": multiplierButton.style.opacity = "0.2";
 
-  console.log(score);
-
-  if (score === 10) {
+  if (score === 200) {
     freeAutoClick = true;
     console.log(freeAutoClick);
-  } else if (score === 30 || score != 10) {
+  } else if (score === 500 || score != 200) {
     freeAutoClick = false;
     console.log(freeAutoClick);
   }
 
   if (freeAutoClick == true) {
     autoClick()
-  } else if (score >= 30 && freeAutoClick == false) {
+  } else if (score >= 500 && freeAutoClick == false) {
+    stopAutoClick();
+  }
+});
+
+// FREE AUTOCLICK CANCEL
+
+cookie.addEventListener("mousemove", function() {
+  if (score === 200) {
+    freeAutoClick = true;
+    console.log(freeAutoClick);
+  } else if (score === 500 || score != 200) {
+    freeAutoClick = false;
+    console.log(freeAutoClick);
+  }
+
+  if (freeAutoClick == true) {
+    autoClick()
+  } else if (score >= 500 && freeAutoClick == false) {
     stopAutoClick();
   }
 });
@@ -147,10 +169,9 @@ bonusButton.addEventListener("click", function() {
   }, 1000);
 })
 
-// AUTOCLICK BUTTON (must activate for free at 200 cookies then desactivates at 500 where it must be bought)
+// AUTOCLICK BUTTON (BECOMES ACTIVE AT 500 COOKIES AND THEN, IF BOUGHT, BECOMES TOGGLES OFF)
 
 autoClickButton.addEventListener("click", function() {
-  // if (score <= 500) {autoClickButton.disabled = true;} else if
   if (score >= 500 && hasAutoClick === false) {
     score -= 500;
     setInterval(function() {
@@ -164,5 +185,34 @@ autoClickButton.addEventListener("click", function() {
     alert("You don't have enough cookies!");
   }
 
-  //  (score >= 500 && hasAutoClick === false) ? autoClickButton.style.opacity = "1": autoClickButton.style.opacity = "0.2";
+  (score >= 500 && hasAutoClick === false) ? autoClickButton.style.opacity = "1": autoClickButton.style.opacity = "0.2";
 })
+
+// BONUS BUTTON (It must be bought at 500 / the value of one click change : 200% during 30sc / A timer of 30 sec must activate )
+
+//// Fonction bonus enlever le prix et appeller fonction du nouveau prix clic
+bonusButton.addEventListener("click", function() {
+  if (score >= 10) {
+    score -= 10;
+    timerTime();
+    hasBonus = true;
+  } else if (score <= 10) {
+    alert("Tu n'as pas assez de cookies!");
+  }
+});
+
+//// TIMER POUR BONUS
+function timerTime() {
+  scoreDisplay.textContent = score;
+  var timeleft = 30;
+  var timer = setInterval(function() {
+    bonusButton.textContent = "Bonus - Purchased";
+    document.getElementById("progressBar").value = 31 - timeleft;
+    timeleft -= 1;
+    if (timeleft <= 0) {
+      hasBonus = false;
+      clearInterval(timer);
+      document.getElementById("progressBar").value = 0;
+    }
+  }, 1000);
+};
