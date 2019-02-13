@@ -42,13 +42,12 @@ Nouvelle amélioration à acheter : Autoclick. Dès que vous avez un score de `2
 ## Étape 12 : _achat d'autoclicker_ <!-- -->
 L'autoclicker ne sera plus automatique. Il faut dorénavant acheter l'autoclicker. Vous ajouterez un bouton avec l'id `autoclic`. Il coutera `500`. Une fois que l'autoclicker a été acheté, il faudra désactiver le bouton d'achat de l'autoclic.
 
-## Étape 13 : _achat d'un bonus_
+## Étape 13 : _achat d'un bonus_ <!-- -->
 Désormais, on doit pouvoir acheter un bonus qui augmente le score de 200% à chaque clic pendant 30 secondes. C'est à dire que si à chaque clic, le score augmente de `3`, pendant les 30 secondes de bonus le score augmentera de `6` à chaque clic, au bout des 30 secondes le score augmentera à nouveau de `3` par clic.
 Vous créerez le bouton « BONUS » avec l'id `bonus`, et le bonus coutera `5000`. Lorsque le bonus est acheté, le nombre de secondes s'affichera dans le bouton avec le décompte et le bouton devra etre désactivé pendant le temps du bonus. Quand le bonus est fini, le bouton est réactivé et retrouve son texte d'origine.
 
 ## Étape 14 : _désactiver les boutons (si j'ai pas le score pour acheter les améliorations)_ <!-- -->
 Faire en sorte que les boutons multiplicateur, autoclic et bonus ne soient clicables QUE si j'ai le score nécessaire pour les acheter.
-<!-- LOOKUP HOW TO DISABLE BUTTONS IN HTML -->
 
-## Étape 15 : _du CSS_
+## Étape 15 : _du CSS_ 
 Que ce soit beau ! Pas d'images !
