@@ -32,6 +32,7 @@ table, td, tr {
  align-items: flex-start;
  width: 300px;
 }
+
 button {
   padding: 15px;
   background-color: blue;
@@ -44,4 +45,8 @@ button {
 button:hover {
   background-color: firebrick;
   color: white;
-} 
+}
+
+#bonus {
+  transform: rotate(10deg);
+}

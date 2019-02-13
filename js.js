@@ -149,23 +149,6 @@ bonusButton.addEventListener("click", function() {
   }
 });
 
-/* BONUS TIMER BAR + BONUS TIMER COUNTDOWN INSIDE THE BUTTON
-function timerTime() {
-  scoreDisplay.textContent = score;
-  var timeleft = 30;
-  var timer = setInterval(timerBar, 1000);
-    function timerBar() {
-    document.getElementById("progressBar").value = 31 - timeleft;
-    timeleft -= 1;
-    if (timeleft <= 0) {
-      hasBonus = false;
-      clearInterval(timer);
-      document.getElementById("progressBar").value = 0;
-      bonusButton.textContent = "Bonus - 5000 Cookies";
-    }
-  }
-};*/
-
 function timer() {
   scoreDisplay.textContent = score;
   var timeLeft = 30;
