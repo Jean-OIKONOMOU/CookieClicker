@@ -40,7 +40,7 @@ cookie.addEventListener("mouseup", function() {
   cookie.style.height = "300px";
 })
 
-// MULTIPLICATEUR (must add a true/false checker for the Bonus)
+// MULTIPLICATEUR
 var multiplicateur = 1;
 var multiplierPrice = 10;
 multiplierButton.addEventListener("click", function augmenteMultiplicateur() {
@@ -159,6 +159,7 @@ function timer() {
       clearInterval(timerId);
       document.getElementById("progressBar").value = 0;
       bonusButton.textContent = "Bonus - 5000 Cookies";
+      bonusButton.disabled = false;
     } else {
       bonusButton.textContent = timeLeft;
       document.getElementById("progressBar").value = 30 - timeLeft;
