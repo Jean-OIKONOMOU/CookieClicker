@@ -9,7 +9,8 @@ var hasAutoClick = false; // VARIABLE WHICH CONTROLS IF THE AUTOCLICK HAS BEEN B
 var hasBonus = false; // VARIABLE WHICH CONTROLS IF THE BONUS HAS BEEN BOUGHT OR NOT.
 var freeAutoClick = false; // VARIABLE WHICH CONTROLS IF THE FREE AUTOCLICK IS ON OR NOT.
 var score = 0; // THE ACTUAL SCORE THAT APPEARS ABOVE THE COOKIE.
-// CANVAS GLOBAL VARIABLES.
+
+// CANVAS GLOBAL VARIABLES AND INTERACTION TOKENS.
 var canvas;
 var canvas2;
 var cookieClk;
@@ -35,10 +36,10 @@ function onDown(event) {
 // FREE AUTOCLICK -> NEEDS TO BE DISABLED WHEN AUTOCLICK IS BOUGHT
 function autoClick() { // THE TIMED PART OF THE AUTOCLICK FUNCTION. WRITE autoClick() TO CALL THE AUTOCLICK.
   var final = setInterval(function() {
-    if (score >= 200 && score < 500 && hasAutoClick === false) {
+    if (score >= 200 && score <= 499 && hasAutoClick === false) {
       score++
       scoreDisplay.textContent = score;
-    } else if (score >= 500) {
+    } else if (hasAutoClick === true) {
       clearInterval(final);
     }
   }, 1000);
