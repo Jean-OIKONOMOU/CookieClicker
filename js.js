@@ -80,6 +80,18 @@ multiplierButton.addEventListener("click", function augmenteMultiplicateur() {
   (score >= multiplierPrice) ? multiplierButton.style.opacity = "1": multiplierButton.style.opacity = "0.2";
 });
 
+
+
+if (score >= 10 && score <= 30) {
+  freeAutoClick = true;
+  autoClick()
+  console.log(freeAutoClick);
+} else {
+  freeAutoClick = false;
+  stopAutoClick();
+  console.log(freeAutoClick);
+};
+
 // SCORE KEEPER
 cookie.addEventListener("click", function() {
   if (multiplicateur === 1 && multiplicateur != 0) {
@@ -87,6 +99,7 @@ cookie.addEventListener("click", function() {
   } else if (multiplicateur > 1) {
     score = score + multiplicateur; ///// CLICK VALUE IF AT LEAST ONE MULTIPLIER HAS BEEN BOUGHT.//
   }
+});
 
   /*  COOKIE IMAGE RANDOMIZER
     var imgArray = ["1.jpg", "2.png", "3.jpg", "4.png", "darth.jpg", "freddie.jpg", "jojo.png", "o.png", ];
@@ -104,20 +117,14 @@ cookie.addEventListener("click", function() {
   (score >= 500 && hasAutoClick === false) ? autoClickButton.style.opacity = "1": autoClickButton.style.opacity = "0.2";
   (score >= multiplierPrice) ? multiplierButton.style.opacity = "1": multiplierButton.style.opacity = "0.2";
 
-  if (score === 10) {
-    freeAutoClick = true;
-    console.log(freeAutoClick);
-  } else if (score === 30 || score != 10) {
-    freeAutoClick = false;
-    console.log(freeAutoClick);
-  }
 
-  if (freeAutoClick == true) {
+
+/*  if (freeAutoClick == true) {
     autoClick()
   } else if (score >= 30 && freeAutoClick == false) {
     stopAutoClick();
   }
-});
+}); */
 
 cookie.addEventListener("click", function drawCircle(size, xPos, Ypos, colour) {
   var xPos = Math.floor(Math.random() * 301);
