@@ -48,10 +48,10 @@ autoClick();
 function opacityBonusButtonCheck() { // THE TIMED PART OF THE AUTOCLICK FUNCTION. WRITE autoClick() TO CALL THE AUTOCLICK.
   var opacity = setInterval(function() {
 scoreDisplay.textContent = score;
-    if (score >= 10 && hasBonus == false) {
+    if (score >= 5000 && hasBonus == false) {
       scoreDisplay.textContent = score;
       bonusButton.style.opacity = "1";
-    } else if (score <= 10 || hasBonus == true) {
+    } else if (score < 5000 || hasBonus == true) {
       scoreDisplay.textContent = score;
       bonusButton.style.opacity = "0.2";
     }
@@ -61,15 +61,30 @@ opacityBonusButtonCheck();
 
 function opacityMultiplierButtonCheck() { // THE TIMED PART OF THE AUTOCLICK FUNCTION. WRITE autoClick() TO CALL THE AUTOCLICK.
   var opac = setInterval(function() {
-    if ((score >= multiplierPrice) && score <= 10 ) {
+    if (score >= multiplierPrice) {
       multiplierButton.style.opacity = "1";
-      bonusButton.style.opacity = "0.2";
+    //  bonusButton.style.opacity = "0.2";
       scoreDisplay.textContent = score;
     } else if (score <= multiplierPrice) {
       multiplierButton.style.opacity = "0.2";
       scoreDisplay.textContent = score;
     }
-  }, 200);
+  }, 50);
+};
+opacityMultiplierButtonCheck()
+
+function opacityAutoclickButtonCheck() { // THE TIMED PART OF THE AUTOCLICK FUNCTION. WRITE autoClick() TO CALL THE AUTOCLICK.
+  var opac2 = setInterval(function() {
+    if (score >= 500 && hasAutoClick === false) {
+      bonusButton.style.opacity = "1"
+      multiplierButton.style.opacity = "0.2";
+    //  bonusButton.style.opacity = "0.2";
+      scoreDisplay.textContent = score;
+    } else if (score <= multiplierPrice) {
+      multiplierButton.style.opacity = "1";
+      scoreDisplay.textContent = score;
+    }
+  }, 50);
 };
 opacityMultiplierButtonCheck()
 
@@ -100,7 +115,7 @@ multiplierButton.addEventListener("click", function augmenteMultiplicateur() {
     multiplicateur++;
     multiplierButton.textContent = "Multiplicateur: x" + multiplicateur + " Prix: " + multiplierPrice + " Cookies";
   } else if (score < multiplierPrice) {
-    console.log("You don't have enough cookies!");
+    alert("You don't have enough cookies!");
   }
 
 });
@@ -166,9 +181,9 @@ cookie.addEventListener("click", function() {
 // AUTOCUCK BUTTON (BECOMES ACTIVE AT 500 COOKIES AND THEN, IF BOUGHT, BECOMES TOGGLED OFF)
 
 autoClickButton.addEventListener("click", function() {
-  if (score >= 10 && hasAutoClick === false) {
+  if (score >= 500 && hasAutoClick === false) {
     autoClickButton.style.opacity = "1"
-    score -= 10;
+    score -= 500;
     setInterval(function() {
       score++;
       scoreDisplay.textContent = score;
@@ -177,7 +192,7 @@ autoClickButton.addEventListener("click", function() {
     bonusButton.style.opacity = "0.2";
     autoClickButton.textContent = "Auto Click - Purchased";
     hasAutoClick = true;
-  } else if (score < 10 && hasAutoClick === false) {
+  } else if (score < 500 && hasAutoClick === false) {
     alert("You don't have enough cookies!");
   };
 })
@@ -186,13 +201,13 @@ autoClickButton.addEventListener("click", function() {
 
 // BONUS FUNCTION
 bonusButton.addEventListener("click", function() {
-  if (score >= 10) {
-    score -= 10;
+  if (score >= 5000) {
+    score -= 5000;
     timer();
     hasBonus = true;
     bonusButton.disabled = true;
     bonusButton.style.opacity = "0.2";
-  } else if (score <= 10) {
+  } else if (score <= 5000) {
     alert("You don't have enough cookies!");
   }
 });
