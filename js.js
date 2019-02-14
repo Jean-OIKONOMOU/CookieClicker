@@ -48,7 +48,7 @@ autoClick();
 
 function opacityBonusButtonCheck() { // THE TIMED PART OF THE AUTOCLICK FUNCTION. WRITE autoClick() TO CALL THE AUTOCLICK.
   var opacity = setInterval(function() {
-scoreDisplay.textContent = score;
+    scoreDisplay.textContent = score;
     if (score >= 5000 && hasBonus == false) {
       scoreDisplay.textContent = score;
       bonusButton.style.opacity = "1";
@@ -64,7 +64,6 @@ function opacityMultiplierButtonCheck() { // THE TIMED PART OF THE AUTOCLICK FUN
   var opac = setInterval(function() {
     if (score >= multiplierPrice) {
       multiplierButton.style.opacity = "1";
-    //  bonusButton.style.opacity = "0.2";
       scoreDisplay.textContent = score;
     } else if (score <= multiplierPrice) {
       multiplierButton.style.opacity = "0.2";
@@ -79,7 +78,6 @@ function opacityAutoclickButtonCheck() { // THE TIMED PART OF THE AUTOCLICK FUNC
     if (score >= 500 && hasAutoClick === false) {
       bonusButton.style.opacity = "1"
       multiplierButton.style.opacity = "0.2";
-    //  bonusButton.style.opacity = "0.2";
       scoreDisplay.textContent = score;
     } else if (score <= multiplierPrice) {
       multiplierButton.style.opacity = "1";
@@ -136,7 +134,7 @@ cookie.addEventListener("click", function() {
   scoreDisplay.textContent = score;
 
   //// BUTTON OPACITY CHECKER
-//  (score >= 10 && hasAutoClick === false) ? autoClickButton.style.opacity = "1": autoClickButton.style.opacity = "0.2";
+  //  (score >= 10 && hasAutoClick === false) ? autoClickButton.style.opacity = "1": autoClickButton.style.opacity = "0.2";
 
   cookie.addEventListener("click", function drawCircle(size, xPos, Ypos, colour) {
     var xPos = Math.floor(Math.random() * 301);
