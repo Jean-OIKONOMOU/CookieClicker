@@ -1,0 +1,73 @@
+table, td, tr {
+  border: 2px solid black;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 2fr;
+}
+
+#canvasArea {
+  width: 450px;
+  height: 650px;
+}
+
+#canvasArea2 {
+  width: 450px;
+  height: 650px;
+}
+
+#a, #b, #c, #d, #e, #f, #g, #h {
+  width: 30px;
+  height: 30px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#cookie {
+  width: 190px;
+  height: 190px;
+  border: 10px solid firebrick;
+}
+
+.container {
+  text-align: center;
+  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: baseline;
+  width: 100%;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: baseline;
+}
+
+button {
+  padding: 15px;
+  background-color: blue;
+  border: 3px solid red;
+  color: white;
+  border-radius: 15px;
+  margin-bottom: 35px;
+}
+
+button:hover {
+  background-color: firebrick;
+  color: white;
+}
+
+.canvasRight {
+  width: auto;
+  height: 15px;
+}
+
+.canvasLeft {
+  width: auto;
+  height: 15px;
+}
